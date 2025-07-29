@@ -1,0 +1,148 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 2,
+    "pending": 0,
+    "failures": 1,
+    "start": "2025-07-25T19:11:01.183Z",
+    "end": "2025-07-25T19:11:02.433Z",
+    "duration": 1250,
+    "testsRegistered": 3,
+    "passPercent": 66.66666666666666,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "44afb8ee-e7ea-400f-9b47-a43274fd762e",
+      "title": "",
+      "fullFile": "cypress\\e2e\\api\\health-check.cy.js",
+      "file": "cypress\\e2e\\api\\health-check.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "7fb05bdd-e164-4623-be5d-e672fd8ecf33",
+          "title": "Health Check - API",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "deve retornar a lista de usuários",
+              "fullTitle": "Health Check - API deve retornar a lista de usuários",
+              "timedOut": null,
+              "duration": 67,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'GET',\n  url: `${API_BASE_URL}/users`,\n  failOnStatusCode: false\n}).then(response => {\n  expect(response.status).to.eq(200);\n  expect(response.body).to.be.an('array');\n  cy.log(`Encontrados ${response.body.length} usuários`);\n});",
+              "err": {},
+              "uuid": "a9a370ac-65ae-4767-9522-ef202f5729eb",
+              "parentUUID": "7fb05bdd-e164-4623-be5d-e672fd8ecf33",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "deve retornar a lista de tickets",
+              "fullTitle": "Health Check - API deve retornar a lista de tickets",
+              "timedOut": null,
+              "duration": 199,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'GET',\n  url: `${API_BASE_URL}/tickets`,\n  failOnStatusCode: false\n}).then(response => {\n  // Pode retornar 200 (com array vazio) ou 404 se o endpoint não existir\n  expect([200, 404]).to.include(response.status);\n  if (response.status === 200) {\n    expect(response.body).to.be.an('array');\n    cy.log(`Encontrados ${response.body.length} tickets`);\n  }\n});",
+              "err": {
+                "message": "AssertionError: expected [ 200, 404 ] to include 500",
+                "estack": "AssertionError: expected [ 200, 404 ] to include 500\n    at Context.eval (webpack:///./cypress/e2e/api/health-check.cy.js:23:28)\n    at getRet (http://localhost:3000/__cypress/runner/cypress_runner.js:120949:20)\n    at tryCatcher (http://localhost:3000/__cypress/runner/cypress_runner.js:1777:23)\n    at Promise.attempt.Promise.try (http://localhost:3000/__cypress/runner/cypress_runner.js:4285:29)\n    at Context.thenFn (http://localhost:3000/__cypress/runner/cypress_runner.js:120960:66)\n    at Context.then (http://localhost:3000/__cypress/runner/cypress_runner.js:121211:21)",
+                "diff": null
+              },
+              "uuid": "0766050b-200d-4a0b-81b2-ef3411ffb2f5",
+              "parentUUID": "7fb05bdd-e164-4623-be5d-e672fd8ecf33",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "deve retornar 404 para rota inexistente",
+              "fullTitle": "Health Check - API deve retornar 404 para rota inexistente",
+              "timedOut": null,
+              "duration": 30,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'GET',\n  url: `${API_BASE_URL}/rota-inexistente`,\n  failOnStatusCode: false\n}).then(response => {\n  expect(response.status).to.eq(404);\n});",
+              "err": {},
+              "uuid": "1f1d7bf2-4943-47f0-8b27-7a65d81580e3",
+              "parentUUID": "7fb05bdd-e164-4623-be5d-e672fd8ecf33",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "a9a370ac-65ae-4767-9522-ef202f5729eb",
+            "1f1d7bf2-4943-47f0-8b27-7a65d81580e3"
+          ],
+          "failures": [
+            "0766050b-200d-4a0b-81b2-ef3411ffb2f5"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 296,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
